@@ -1,0 +1,28 @@
+:root{
+--FORM_ELEMENT_BORDER_RADIUS: 20px;
+}
+
+*{
+    outline: none;
+    border:none;
+    box-sizing: border-box
+}
+
+.button{
+    border: 2px solid #fff;
+    border-radius: var(--FORM_ELEMENT_BORDER_RADIUS);
+    min-width: 59px;
+    color: #fff;
+    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+}
+
+.textboxes{
+    border-radius: var(--FORM_ELEMENT_BORDER_RADIUS);
+    background-color: #ccc;
+    padding:10px 20px;
+    width:100%;
+    
+}
+button{
+    cursor: pointer
+}

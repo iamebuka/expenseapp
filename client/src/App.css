@@ -1,0 +1,109 @@
+*{
+  box-sizing: border-;
+  position: relative;
+}
+body{
+  background :#212026;
+  color: #fff;
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size:18px
+  /* background-image: linear-gradient(to right top, #000000, #383838, #707070, #adadad, #eeeeee);
+  background-image: linear-gradient(to left bottom, #000000, #040303, #080506, #0d0809, #100b0b); */
+}
+.App {
+  
+  display: block;
+}
+.App > .flex-item{
+  width: 95%;
+  margin:0px auto;
+  
+}
+
+.overlay{
+  background-color: rgba(255,255,255,0.4);
+  width:100%;
+  height: 100%;
+  top:0px;
+  left:0px;
+  position: fixed
+}
+
+.new{
+  
+  min-height: 300px;
+  padding: 50px 20px;
+  margin: 105px auto;
+  background-color: #fff;
+  color:#000
+
+}
+
+.new > div{
+  margin-bottom: 10px;
+}
+.new > div > label{
+  margin-left: 13px;
+}
+
+.transaction-card{
+  display:flex;
+  margin-bottom: 10px;
+  border-left: 5px solid #ccc;
+  border-radius: 4px 0px 0px 4px;
+  box-shadow:  0px 0px 2px #ccc
+
+}
+.transaction-card:even{
+  border-left: 5px solid #fff;
+}
+.transaction-card .item{
+  flex-basis: 20%;
+  text-transform: capitalize;
+  padding: 7px;
+}
+.transaction-card .item:nth-child(2){
+  flex-basis: 60%;
+ 
+}
+
+.transaction-card .date{
+  font-size: 14px;
+  color:#ccc
+}
+ section{
+   padding:15px;
+   min-height: 270px;
+   margin: 30px 0px;
+   /* box-shadow: -1px 1px 2px #eee, 1px -1px 2px #eee; */
+ }
+
+ section:first-child{
+ /*  background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+  background-image: linear-gradient(to right top, #37052a, #62084f, #8f0d7a, #bd15a9, #ec21dc);
+  */ color:#fff;
+  margin: 0px;
+ }
+
+ .absolutely{
+   position: absolute;
+   top:5px;
+   right: 5px;
+  
+ }
+ .fab{
+   position: fixed;
+   bottom: 20px;
+   right:20px
+ }
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+@media(min-width:300px){
+  .new{
+    width:90%;
+  }
+}
