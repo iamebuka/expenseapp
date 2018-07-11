@@ -19,7 +19,9 @@ const con = mysql.createConnection({
 })
 
 
-
+app.get('/', (req, res) => {
+ res.send({message: "welcome to index page"})
+})
 
 //retreive expenses
 app.get('/api/expenses', (req, res) => {
