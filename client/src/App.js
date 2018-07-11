@@ -54,6 +54,7 @@ class App extends Component {
         })
           .then((data) => {
             alert("expense successfully added")
+            this.loadData();
             this.resetState()})
           .catch(() => console.log("insert error occured"))
       })
@@ -68,6 +69,7 @@ class App extends Component {
       })
         .then((data) => {
           alert("expense successfully added")
+          this.loadData();
           this.resetState()})
         .catch(() => console.log("insert error occured"))
     }
@@ -124,6 +126,10 @@ class App extends Component {
     this.setState({createform: false})
   }
   componentWillMount() {
+    this.loadData()
+  }
+
+  loadData=()=>{
     this.getExpenses().then(data => {
       console.log(data)
 
@@ -133,8 +139,8 @@ class App extends Component {
       })
     })
       .catch(err => console.log("A get expense error occured!"))
+ 
   }
-
   render() {
     if (this.state.pageLoad) {
       return <Loading />
