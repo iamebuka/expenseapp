@@ -1,0 +1,51 @@
+.summary-card{
+    display: flex;
+    flex-wrap: wrap
+}
+.summary-card .item:first-child{
+   flex: 1 100%;
+    font-size: inherit;
+  
+   
+}
+.summary-card .item{
+    flex: 1 30%;
+    font-size: 20px;
+    text-align: center;
+   
+  
+}
+.summary-card .item > span{
+    font-weight: 700
+}
+.summary-card .item > label{
+    font-size: 16px;
+    display:block;
+    color:#ccc
+}
+
+@media(min-width: 900px){
+    .summary-card{
+        display: flex;
+        flex-wrap: wrap
+    }
+    .summary-card .item:first-child{
+       flex: 1 33.333%;
+          
+       
+    }
+    .summary-card .item{
+        flex: 1 33.333%;
+        font-size: 100px;
+             
+      
+    }
+    .summary-card .item > span{
+        font-weight: 700
+    }
+    .summary-card .item > label{
+        font-size: 16px;
+       
+    }
+        
+}
