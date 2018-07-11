@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
- 
+    "start": "node server.js"  
     },
   "dependencies": {
     "body-parser": "^1.18.3",
