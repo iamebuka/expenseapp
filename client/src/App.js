@@ -49,11 +49,11 @@ class App extends Component {
         this.insertExpenses({
           transvalue: (res * data["EUR_GBP"].val),
           category: this.state.category,
-          date: this.state.date,
+          date: moment(this.state.date, "DD-MM-YYYY"),
           note: this.state.note
         })
           .then((data) => {
-            console.log("successful", data)
+            alert("expense successfully added")
             this.resetState()})
           .catch(() => console.log("insert error occured"))
       })
@@ -67,7 +67,7 @@ class App extends Component {
         note: this.state.note
       })
         .then((data) => {
-          console.log("successful", data)
+          alert("expense successfully added")
           this.resetState()})
         .catch(() => console.log("insert error occured"))
     }
