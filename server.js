@@ -20,9 +20,6 @@ const con = mysql.createConnection({
 })
 
 
-app.get('/', (req, res) => {
- res.send({message: "welcome to index page"})
-})
 
 //retreive expenses
 app.get('/api/expenses', (req, res) => {
@@ -46,5 +43,8 @@ app.post("/api/expenses", (req, res) => {
 
 })
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
