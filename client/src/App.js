@@ -99,13 +99,13 @@ class App extends Component {
 
   getExpenses = async (value) => {
     //currency converter call api
-    let query = await fetch("/api/expenses/");
+    let query = await fetch("/api/expenses");
     let rawdata = await query.json()
     return rawdata
   }
 
   insertExpenses = async (value) => {
-    let query = await fetch("/api/expenses/", {
+    let query = await fetch("/api/expenses", {
       method: "POST",
       headers: {
         'content-type': 'application/json'

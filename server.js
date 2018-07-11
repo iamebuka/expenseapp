@@ -22,7 +22,7 @@ const con = mysql.createConnection({
 
 
 //retreive expenses
-app.get('/api/expenses/', (req, res) => {
+app.get('/api/expenses', (req, res) => {
   
     con.query("SELECT transvalue, category, date, note FROM expenses ORDER BY date desc",(err, result)=>{
       if(err) throw err
