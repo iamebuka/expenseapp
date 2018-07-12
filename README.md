@@ -1,1 +1,3 @@
-![expense app live link](https://expenseapps.herokuapp.com/)
+#expense app 
+
+https://expenseapps.herokuapp.com/
