@@ -19,7 +19,7 @@ class Summary extends React.Component {
             documentElement = d.documentElement,
             body = d.getElementsByTagName('body')[0],
             width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
-        width = width - 30
+        width = width - 20
         this.setState({ width });
     }
 
@@ -75,10 +75,7 @@ this.generateWeeklyData()
     })
     this.setState({totalWeekly: totalWeekly}) 
  }
-   calcVAT = (value) => {
-    //calculate vat function
-    return (Number(value) + (0.2 * Number(value)));
-  }
+   
     render() {
         let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         return (
@@ -91,7 +88,7 @@ this.generateWeeklyData()
                     </PieChart>
                 </div>
                 <div className="item">
-                <label>LAST WEEK EXPENSE</label>
+                <label>WEEK EXPENSE</label>
                 <span> ${this.state.totalWeekly} </span>
                 </div>
                 <div className="item">
