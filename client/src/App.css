@@ -105,5 +105,6 @@ body{
 @media(min-width:300px){
   .new{
     width:90%;
+    margin: 30px auto;
   }
 }
