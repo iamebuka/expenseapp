@@ -1,9 +1,10 @@
 *{
   box-sizing: border-;
   position: relative;
+  letter-spacing: 1.6px;
 }
 body{
-  background :#212026;
+  background :rgb(32, 32, 32);
   color: #fff;
   font-family: 'PT Sans Narrow', sans-serif;
   font-size:18px
@@ -15,7 +16,7 @@ body{
   display: block;
 }
 .App > .flex-item{
-  width: 95%;
+  width: 70%;
   margin:0px auto;
   
 }
@@ -45,22 +46,38 @@ body{
 .new > div > label{
   margin-left: 13px;
 }
+.transaction-list{
+  box-shadow: 1px -1px 5px #000, -1px 1px 5px #000;
+  border-radius: 5px;
+}
 
 .transaction-card{
   display:flex;
-  margin-bottom: 10px;
-  border-left: 5px solid #ccc;
-  border-radius: 4px 0px 0px 4px;
-  box-shadow:  0px 0px 2px #ccc
+  padding:10px;
+  border-bottom:1px solid rgba(0,0,0,0.3);
+  cursor: pointer;
 
 }
-.transaction-card:even{
-  border-left: 5px solid #fff;
+.transaction-card:first-child{
+  border-radius: 5px 5px 0px 0px;
+}
+.transaction-card:last-child{
+ border-radius: 0px 0px 5px 5px
+}
+.transaction-card:first-child .transaction-card:last-child{
+  border-bottom:1px solid #000;
+}
+
+.transaction-card:hover{
+  border-left: 5px solid rgb(51, 183, 188) 
 }
 .transaction-card .item{
   flex-basis: 20%;
   text-transform: capitalize;
   padding: 7px;
+  font-weight: 700;
+
+
 }
 .transaction-card .item:nth-child(2){
   flex-basis: 60%;
@@ -74,7 +91,7 @@ body{
  section{
    padding:15px;
    min-height: 270px;
-   margin: 30px 0px;
+   margin: 30px 0px;  
    /* box-shadow: -1px 1px 2px #eee, 1px -1px 2px #eee; */
  }
 

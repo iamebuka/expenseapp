@@ -1,22 +1,44 @@
 .summary-card{
     display: flex;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    padding: 5px;
+    box-sizing: border-box
+}
+.summary-balance, .summary-balance-weekly{
+    width:50%;
+    margin-bottom: 70px;
+    font-weight: 700;
+}
+.summary-balance label.heading, .summary-balance-weekly label.heading{
+    
+    padding: 15px 15px 15px 0px;
+    font-size: 25px;
+    text-transform: capitalize;
+    display: block
+}
+.summary-balance span, .summary-balance-weekly span{
+    font-size: 40px;
+}
+.summary-balance-weekly{
+text-align: right
 }
 .summary-card .item:first-child{
-   flex: 1 100%;
-    font-size: inherit;
-  
-   
+    font-size: inherit
 }
 .summary-card .item{
-    flex: 1 30%;
-    font-size: 20px;
+   width: 100%;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: capitalize;
+    padding: 20px;
     text-align: center;
+    box-shadow: 1px -1px 5px #000, -1px 1px 5px #000;
+    justify-content: space-between;
    
   
 }
 .summary-card .item > span{
-    font-weight: 700
+   
 }
 .summary-card .item > label{
     font-size: 16px;
@@ -27,15 +49,11 @@
 @media(min-width: 900px){
     .summary-card{
         display: flex;
-        flex-wrap: wrap
-    }
-    .summary-card .item:first-child{
-       flex: 1 33.333%;
-          
-       
+        flex-wrap: wrap;
+        justify-content: space-between
     }
     .summary-card .item{
-        flex: 1 33.333%;
+        width: 47%;
         font-size: 100px;
              
       

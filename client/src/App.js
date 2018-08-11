@@ -55,7 +55,8 @@ class App extends Component {
           .then((data) => {
             alert("expense successfully added")
             this.loadData();
-            this.resetState()})
+            this.resetState()
+          })
           .catch(() => console.log("insert error occured"))
       })
 
@@ -70,7 +71,8 @@ class App extends Component {
         .then((data) => {
           alert("expense successfully added")
           this.loadData();
-          this.resetState()})
+          this.resetState()
+        })
         .catch(() => console.log("insert error occured"))
     }
 
@@ -122,14 +124,14 @@ class App extends Component {
     //calculate vat function
     return (0.2 * Number(value));
   }
-  oncloseForm =()=>{
-    this.setState({createform: false})
+  oncloseForm = () => {
+    this.setState({ createform: false })
   }
   componentWillMount() {
     this.loadData()
   }
 
-  loadData=()=>{
+  loadData = () => {
     this.getExpenses().then(data => {
       console.log(data)
 
@@ -139,7 +141,7 @@ class App extends Component {
       })
     })
       .catch(err => console.log("A get expense error occured!"))
- 
+
   }
   render() {
     if (this.state.pageLoad) {
@@ -150,30 +152,32 @@ class App extends Component {
         <Navigation />
         <div className="flex-item">
           <section>
-            Summary
+           
             <Summary expense={this.state.expense} />
 
           </section>
-          <section>
+          <section >
             Transactions
-            {this.state.expense.map((item, index) => {
-              return (
-                <div key={index + "transaction-card"} className="transaction-card">
-                  <div className="item">
-                    <div> {item.category}</div>
+            <div className="transaction-list">
+              {this.state.expense.map((item, index) => {
+                return (
+                  <div key={index + "transaction-card"} className="transaction-card">
+                    <div className="item">
+                      <div> {item.category}</div>
 
+                    </div>
+                    <div key={index + "item1"} className="item">
+                      <div> {item.note}</div>
+                      <div className="date">  {moment(item.date).format("YYYY.MM.DD")}</div>
+                    </div >
+                    <div key={index + "item2"} className="item">
+                      <div>€{item.transvalue} </div>
+                      <div className="date">VAT: €{this.calcVAT(item.transvalue)}</div>
+                    </div>
                   </div>
-                  <div key={index + "item1"} className="item">
-                    <div> {item.note}</div>
-                    <div className="date">  {moment(item.date).format("YYYY.MM.DD")}</div>
-                  </div >
-                  <div key={index + "item2"} className="item">
-                    <div>{item.transvalue} </div>
-                    <div className="date">VAT: {this.calcVAT(item.transvalue)}</div>
-                  </div>
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </section>
           <section>
             <Activity expense={this.state.expense} />

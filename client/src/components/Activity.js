@@ -17,7 +17,7 @@ class Activity extends React.Component {
             documentElement = d.documentElement,
             body = d.getElementsByTagName('body')[0],
             width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
-        width = width - 90
+        width = 0.69 * width;
         this.setState({ width });
     }
 
@@ -82,7 +82,7 @@ class Activity extends React.Component {
                     <XAxis dataKey="label" />
                     <Tooltip />
                     <CartesianGrid vertical={false} horizontal={false} stroke="#f5f5f5" />
-                    <Line type="monotone" dataKey="value" stroke="#662e91" yAxisId={0} />
+                    <Line type="monotone" dataKey="value" stroke="rgb(51, 183, 188)" yAxisId={0} />
 
                 </LineChart>
 

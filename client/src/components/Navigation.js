@@ -10,7 +10,7 @@ class Navigation extends React.Component {
     render() {
          return (
             <div>
-                <AppBar position="static" style={{backgroundColor:"#212026" }}>
+                <AppBar position="static" style={{backgroundColor:"rgb(32, 32, 32)" }}>
                     <Toolbar>
                         <Typography variant="title" color="inherit">
                             Expense

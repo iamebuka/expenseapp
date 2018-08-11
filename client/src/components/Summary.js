@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Summary.css"
 import "./elements.css"
-import {  Pie, PieChart, Tooltip} from 'recharts'
+import { Pie, PieChart, Tooltip } from 'recharts'
 import { Icon } from '@material-ui/core';
 import moment from "moment"
 
@@ -19,7 +19,7 @@ class Summary extends React.Component {
             documentElement = d.documentElement,
             body = d.getElementsByTagName('body')[0],
             width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
-        width = width - 20
+        width = 0.95 * width
         this.setState({ width });
     }
 
@@ -27,7 +27,7 @@ class Summary extends React.Component {
         this.updateDimensions();
         this.generatePieData();
         this.generateMonthData()
-this.generateWeeklyData()
+        this.generateWeeklyData()
     }
     componentDidMount() {
         window.addEventListener("resize", this.updateDimensions);
@@ -51,52 +51,54 @@ this.generateWeeklyData()
         for (var key in data) {
             pieData.push({ label: key, value: data[key] })
         }
-        this.setState({pieData: pieData})
+        this.setState({ pieData: pieData })
     }
-   generateMonthData=()=>{
-      var totalMonthly = 0
-      this.props.expense.map((item, index) =>{
-      if(moment(item.date,"YYYYMMDD").month() === moment().month()){
-          
-          totalMonthly+= Number(item.transvalue)
-       }
-      })
-      this.setState({totalMonthly: totalMonthly}) 
-   }
+    generateMonthData = () => {
+        var totalMonthly = 0
+        this.props.expense.map((item, index) => {
+            if (moment(item.date, "YYYYMMDD").month() === moment().month()) {
 
-   generateWeeklyData=()=>{
-    var totalWeekly = 0
-    this.props.expense.map((item, index) =>{
-    console.log("Week", moment(item.date,"YYYYMMDD").week(), moment().week())
-    if(moment(item.date,"YYYYMMDD").week() === moment().week()){
-        
-        totalWeekly+= Number(item.transvalue)
-     }
-    })
-    this.setState({totalWeekly: totalWeekly}) 
- }
-   
+                totalMonthly += Number(item.transvalue)
+            }
+        })
+        this.setState({ totalMonthly: totalMonthly })
+    }
+
+    generateWeeklyData = () => {
+        var totalWeekly = 0
+        this.props.expense.map((item, index) => {
+            console.log("Week", moment(item.date, "YYYYMMDD").week(), moment().week())
+            if (moment(item.date, "YYYYMMDD").week() === moment().week()) {
+
+                totalWeekly += Number(item.transvalue)
+            }
+        })
+        this.setState({ totalWeekly: totalWeekly })
+    }
+
     render() {
         let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         return (
             <div className="summary-card">
-                <div className="item">
+                <div className="summary-balance">
+                    <label className="heading">{month[moment().month()]}  Transactions </label>
+                    <span> €806.29{/* {this.state.totalMonthly} */ }</span>
+                </div>
+                <div className="summary-balance-weekly">
+                    <label className="heading">WEEK EXPENSE</label>
+                    <span> €{this.state.totalWeekly} </span>
+                </div>
+               {/*  <div className="item">
                     <PieChart width={300} height={250}>
                         <Tooltip active={true} />
-                        <Pie data={this.state.pieData} dataKey="value" legendType="line" label={true} nameKey="label" cx="50%" cy="50%" fill="#662e91" />
+                        <Pie data={this.state.pieData} dataKey="value" legendType="line" label={true} nameKey="label" cx="50%" cy="50%" fill="rgb(51, 183, 188)" />
 
                     </PieChart>
-                </div>
-                <div className="item">
-                <label>WEEK EXPENSE</label>
-                <span> ${this.state.totalWeekly} </span>
-                </div>
-                <div className="item">
-                <label>TOTAL {month[moment().month()].toUpperCase()}  EXPENSE </label>
-                <span> ${this.state.totalMonthly} </span>
-                </div>
-                </div>
-          
+                </div> */}
+               
+
+            </div>
+
         )
     }
 }
