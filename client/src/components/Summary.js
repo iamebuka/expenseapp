@@ -85,7 +85,7 @@ class Summary extends React.Component {
                     <span> €806.29{/* {this.state.totalMonthly} */ }</span>
                 </div>
                 <div className="summary-balance-weekly">
-                    <label className="heading">WEEK EXPENSE</label>
+                    <label className="heading">Weeks Transactions</label>
                     <span> €{this.state.totalWeekly} </span>
                 </div>
                {/*  <div className="item">
