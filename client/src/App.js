@@ -24,7 +24,9 @@ class App extends Component {
       note: '',
       category: "",
       expense: [],
-      pageLoad: true
+      rexpense:[],
+      pageLoad: true, 
+      searchText: ""
 
     }
   }
@@ -36,6 +38,14 @@ class App extends Component {
   handleDataChange = (e) => {
     e.persist()
     this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleSearch = (e) => {
+    this.setState({
+      searchText: e.target.value,
+      expense: this.state.rexpense.filter((expense)=> new RegExp(e.target.value,"i").exec(expense.note))
+    
+    })
   }
 
   handleFormSubmit = (e) => {
@@ -137,6 +147,7 @@ class App extends Component {
 
       this.setState({
         expense: [...data],
+        rexpense:[...data],
         pageLoad: false
       })
     })
@@ -152,12 +163,14 @@ class App extends Component {
         <Navigation />
         <div className="flex-item">
           <section>
-           
+
             <Summary expense={this.state.expense} />
 
           </section>
           <section >
-            Transactions
+            <div>
+            <input type="text" placeholder="search transactions" name="searchText" value={this.state.searchText} onChange={this.handleSearch} className="textboxes searchText" />
+            </div>
             <div className="transaction-list">
               {this.state.expense.map((item, index) => {
                 return (

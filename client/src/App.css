@@ -46,9 +46,16 @@ body{
 .new > div > label{
   margin-left: 13px;
 }
+.searchText{
+  background-color: rgba(0,0,0,0.4);
+	padding: 10px 20px;
+	width: 400px;
+  color: #ccc;
+}
 .transaction-list{
   box-shadow: 1px -1px 5px #000, -1px 1px 5px #000;
   border-radius: 5px;
+  margin: 25px 0px
 }
 
 .transaction-card{
@@ -92,16 +99,10 @@ body{
    padding:15px;
    min-height: 270px;
    margin: 30px 0px;  
-   /* box-shadow: -1px 1px 2px #eee, 1px -1px 2px #eee; */
+   
  }
 
- section:first-child{
- /*  background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
-  background-image: linear-gradient(to right top, #37052a, #62084f, #8f0d7a, #bd15a9, #ec21dc);
-  */ color:#fff;
-  margin: 0px;
- }
-
+ 
  .absolutely{
    position: absolute;
    top:5px;
