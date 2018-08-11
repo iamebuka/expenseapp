@@ -284,7 +284,7 @@ class App extends Component {
 
           </section>
           <section>
-            <Activity expense={this.state.activityData} />
+            <Activity expense={this.state.rawData} />
           </section>
         </div>
         <Button variant="fab" color="primary" aria-label="add" style={{ position: "fixed", right: "20px", bottom: "20px" }} onClick={() => this.setState({ createform: true })} className="fab">
