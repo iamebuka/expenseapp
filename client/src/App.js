@@ -25,7 +25,7 @@ class App extends Component {
       category: "",
       expense: [],
       rexpense: [],
-      rawData:[],
+      rawData: [],
       pageLoad: true,
       searchText: ""
 
@@ -46,7 +46,7 @@ class App extends Component {
       searchText: e.target.value,
       expense: this.state.rexpense.filter((expense) => {
         return new RegExp(e.target.value, "i").exec(expense.note)
-        
+
       })
 
     })
@@ -143,61 +143,24 @@ class App extends Component {
     let sort = {}
     data.map((item, index) => {
       let date = moment(item.date).format("MMMM YYYY");
-      if (moment().diff(item.date, "days") <= 1) {
-        //today
-        if (sort["today"]) {
-          sort["today"].push(item);
-        } else {
-          sort["today"] = [];
-          sort["today"].push(item);
-        }
-      } else if (moment().diff(item.date, "days") > 1 && moment().diff(item.date, "days") <= 2) {
-        //yesterday
-        if (sort["yesterday"]) {
-          sort["yesterday"].push(item);
-        } else {
-          sort["yesterday"] = [];
-          sort["yesterday"].push(item);
-        }
-      }
-      else if (moment().diff(item.date, "days") > 2 && moment().diff(item.date, "days") <= 7) {
-        //earlier this week
-        if (sort["earlier this week"]) {
-          sort["earlier this week"].push(item);
-        } else {
-          sort["earlier this week"] = [];
-          sort["earlier this week"].push(item);
-        }
-      }
-      else if (moment().diff(item.date, "days") > 7 && moment().diff(item.date, "days") <= 10) {
-        //few days ago
-        if (sort["few days ago"]) {
-          sort["few days ago"].push(item);
-        } else {
-          sort["few days ago"] = [];
-          sort["few days ago"].push(item);
-        }
-      }
-      else if (moment().diff(item.date, "days") > 11 && moment().diff(item.date, "days") <= 30) {
-        //earlier this month
-        if (sort["earlier this month"]) {
-          sort["earlier this month"].push(item);
-        } else {
-          sort["earlier this month"] = [];
-          sort["earlier this month"].push(item);
-        }
-      }
-      else {
-        //month year
-        if (sort[date]) {
-          sort[date].push(item);
-        } else {
-          sort[date] = [];
-          sort[date].push(item);
-        }
-      }
+      let itemDate = moment(item.date).month();
+      console.log("%cITEM DATE:","green");
+      console.log(itemDate);
+      let itemYear = moment(item.date).year()
+      let nowDiff = moment().diff(item.date, "days")
+      let key = nowDiff < 1 ? "today" :
+        nowDiff < 2 ? "yesterday" :
+          (nowDiff < 7 && moment().month() === itemDate && moment().year() === itemYear) ? "earlier this week" :
+            (nowDiff < 10 && moment().month() === itemDate && moment().year() === itemYear) ? "few days ago" :
+              (nowDiff < 30 && moment().month() === itemDate && moment().year() === itemYear) ? "earlier this month" : date
 
 
+      if (sort[key]) {
+        sort[key].push(item)
+      } else {
+        sort[key] = []
+        sort[key].push(item)
+      }
     })
     return sort;
   }
@@ -227,7 +190,7 @@ class App extends Component {
       this.setState({
         expense: [...parseData],
         rexpense: [...data],
-        rawData:[...data],
+        rawData: [...data],
         pageLoad: false
       })
     })
