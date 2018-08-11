@@ -25,7 +25,7 @@ class App extends Component {
       category: "",
       expense: [],
       rexpense: [],
-      activityData:[],
+      rawData:[],
       pageLoad: true,
       searchText: ""
 
@@ -227,7 +227,7 @@ class App extends Component {
       this.setState({
         expense: [...parseData],
         rexpense: [...data],
-        activityData:[...data],
+        rawData:[...data],
         pageLoad: false
       })
     })
@@ -244,7 +244,7 @@ class App extends Component {
         <div className="flex-item">
           <section>
 
-            <Summary expense={this.state.expense} />
+            <Summary expense={this.state.rawData} />
 
           </section>
           <section >
