@@ -24,8 +24,9 @@ class App extends Component {
       note: '',
       category: "",
       expense: [],
-      rexpense:[],
-      pageLoad: true, 
+      rexpense: [],
+      activityData:[],
+      pageLoad: true,
       searchText: ""
 
     }
@@ -43,8 +44,11 @@ class App extends Component {
   handleSearch = (e) => {
     this.setState({
       searchText: e.target.value,
-      expense: this.state.rexpense.filter((expense)=> new RegExp(e.target.value,"i").exec(expense.note))
-    
+      expense: this.state.rexpense.filter((expense) => {
+        return new RegExp(e.target.value, "i").exec(expense.note)
+        
+      })
+
     })
   }
 
@@ -134,6 +138,78 @@ class App extends Component {
     //calculate vat function
     return (0.2 * Number(value));
   }
+
+  sortData = (data) => {
+    let sort = {}
+    data.map((item, index) => {
+      let date = moment(item.date).format("MMMM YYYY");
+      if (moment().diff(item.date, "days") <= 1) {
+        //today
+        if (sort["today"]) {
+          sort["today"].push(item);
+        } else {
+          sort["today"] = [];
+          sort["today"].push(item);
+        }
+      } else if (moment().diff(item.date, "days") > 1 && moment().diff(item.date, "days") <= 2) {
+        //yesterday
+        if (sort["yesterday"]) {
+          sort["yesterday"].push(item);
+        } else {
+          sort["yesterday"] = [];
+          sort["yesterday"].push(item);
+        }
+      }
+      else if (moment().diff(item.date, "days") > 2 && moment().diff(item.date, "days") <= 7) {
+        //earlier this week
+        if (sort["earlier this week"]) {
+          sort["earlier this week"].push(item);
+        } else {
+          sort["earlier this week"] = [];
+          sort["earlier this week"].push(item);
+        }
+      }
+      else if (moment().diff(item.date, "days") > 7 && moment().diff(item.date, "days") <= 10) {
+        //few days ago
+        if (sort["few days ago"]) {
+          sort["few days ago"].push(item);
+        } else {
+          sort["few days ago"] = [];
+          sort["few days ago"].push(item);
+        }
+      }
+      else if (moment().diff(item.date, "days") > 11 && moment().diff(item.date, "days") <= 30) {
+        //earlier this month
+        if (sort["earlier this month"]) {
+          sort["earlier this month"].push(item);
+        } else {
+          sort["earlier this month"] = [];
+          sort["earlier this month"].push(item);
+        }
+      }
+      else {
+        //month year
+        if (sort[date]) {
+          sort[date].push(item);
+        } else {
+          sort[date] = [];
+          sort[date].push(item);
+        }
+      }
+
+
+    })
+    return sort;
+  }
+
+  parseData = (data) => {
+    let res = [];
+    for (var key in data) {
+      res.push({ label: key, value: data[key] })
+    }
+
+    return res
+  }
   oncloseForm = () => {
     this.setState({ createform: false })
   }
@@ -144,10 +220,14 @@ class App extends Component {
   loadData = () => {
     this.getExpenses().then(data => {
       console.log(data)
-
+      // console.log(this.sortData(data)); 
+      let sorted = this.sortData(data)
+      console.log(this.parseData(sorted))
+      let parseData = this.parseData(sorted)
       this.setState({
-        expense: [...data],
-        rexpense:[...data],
+        expense: [...parseData],
+        rexpense: [...data],
+        activityData:[...data],
         pageLoad: false
       })
     })
@@ -168,32 +248,43 @@ class App extends Component {
 
           </section>
           <section >
-            <div>
-            <input type="text" placeholder="search transactions" name="searchText" value={this.state.searchText} onChange={this.handleSearch} className="textboxes searchText" />
+            <div className="search">
+              <input type="text" placeholder="search transactions" name="searchText" value={this.state.searchText} onChange={this.handleSearch} className="textboxes searchText" />
             </div>
-            <div className="transaction-list">
-              {this.state.expense.map((item, index) => {
-                return (
-                  <div key={index + "transaction-card"} className="transaction-card">
-                    <div className="item">
-                      <div> {item.category}</div>
 
-                    </div>
-                    <div key={index + "item1"} className="item">
-                      <div> {item.note}</div>
-                      <div className="date">  {moment(item.date).format("YYYY.MM.DD")}</div>
-                    </div >
-                    <div key={index + "item2"} className="item">
-                      <div>€{item.transvalue} </div>
-                      <div className="date">VAT: €{this.calcVAT(item.transvalue)}</div>
-                    </div>
+            {this.state.expense.map((item, index) => {
+              return (
+                <div>
+                  <div className="group-heading"> {item.label}</div>
+                  <div className="transaction-list">
+                    {item.value.map((item, index) => {
+                      return (
+
+                        <div key={index + "transaction-card"} className="transaction-card">
+                          <div className="item">
+                            <div> {item.category}</div>
+
+                          </div>
+                          <div key={index + "item1"} className="item">
+                            <div> {item.note}</div>
+                            <div className="date">  {moment(item.date).format("YYYY.MM.DD")}</div>
+                          </div >
+                          <div key={index + "item2"} className="item">
+                            <div>€{item.transvalue} </div>
+                            <div className="date">VAT: €{this.calcVAT(item.transvalue)}</div>
+                          </div>
+                        </div>
+
+                      )
+                    })}
                   </div>
-                )
-              })}
-            </div>
+                </div>
+              )
+            })}
+
           </section>
           <section>
-            <Activity expense={this.state.expense} />
+            <Activity expense={this.state.activityData} />
           </section>
         </div>
         <Button variant="fab" color="primary" aria-label="add" style={{ position: "fixed", right: "20px", bottom: "20px" }} onClick={() => this.setState({ createform: true })} className="fab">

@@ -46,6 +46,10 @@ body{
 .new > div > label{
   margin-left: 13px;
 }
+
+.search{
+  margin-bottom: 20px;
+}
 .searchText{
   background-color: rgba(0,0,0,0.4);
 	padding: 10px 20px;
@@ -102,6 +106,11 @@ body{
    
  }
 
+ section .group-heading{
+   font-size: 22px;
+   font-weight: 700;
+   text-transform: capitalize
+ }
  
  .absolutely{
    position: absolute;
