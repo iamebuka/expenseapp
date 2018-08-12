@@ -42,16 +42,23 @@ class App extends Component {
   }
 
   handleSearch = (e) => {
+   // let filter = this.state.rawData.filter((item) => new RegExp(e.target.val, "i").exec(item.note))
+   let filter = this.filterSearch(this.state.rawData, e.target.value)
+    let sorted = this.sortData(filter)
+    let parseData = this.parseData(sorted)
     this.setState({
       searchText: e.target.value,
-      expense: this.state.rexpense.filter((expense) => {
-        return new RegExp(e.target.value, "i").exec(expense.note)
-
-      })
+      expense: [...parseData]
 
     })
   }
 
+  filterSearch = (arr, searchText) => {
+    return rDetails = arr.filter(l => {
+      return new RegExp(searchText, "i").exec(l.note)
+    });
+  }
+  
   handleFormSubmit = (e) => {
     var amount = this.state.transaction;
     if (amount.toLocaleLowerCase().endsWith("eur")) {
@@ -111,7 +118,6 @@ class App extends Component {
     //currency converter call api
     let query = await fetch("http://free.currencyconverterapi.com/api/v5/convert?q=EUR_GBP&compact=y");
     let rawdata = await query.json()
-    console.log("rawdata", rawdata)
     return rawdata
   }
 
@@ -139,15 +145,13 @@ class App extends Component {
     return (0.2 * Number(value));
   }
 
-  sortData = (data) => {
+  groupData = (data) => {
     let sort = {}
     data.map((item, index) => {
       let date = moment(item.date).format("MMMM YYYY");
       let itemDate = moment(item.date).month();
-      console.log("%cITEM DATE:","green");
-      console.log(itemDate);
       let itemYear = moment(item.date).year()
-      let nowDiff = moment().diff(item.date, "days")
+      let nowDiff = moment().diff(item.date, "days", true)
       let key = nowDiff < 1 ? "today" :
         nowDiff < 2 ? "yesterday" :
           (nowDiff < 7 && moment().month() === itemDate && moment().year() === itemYear) ? "earlier this week" :
@@ -156,10 +160,10 @@ class App extends Component {
 
 
       if (sort[key]) {
-        sort[key].push(item)
+        sort[key].push(item);
       } else {
-        sort[key] = []
-        sort[key].push(item)
+        sort[key] = [];
+        sort[key].push(item);
       }
     })
     return sort;
@@ -170,8 +174,7 @@ class App extends Component {
     for (var key in data) {
       res.push({ label: key, value: data[key] })
     }
-
-    return res
+    return res;
   }
   oncloseForm = () => {
     this.setState({ createform: false })
@@ -182,14 +185,11 @@ class App extends Component {
 
   loadData = () => {
     this.getExpenses().then(data => {
-      console.log(data)
-      // console.log(this.sortData(data)); 
-      let sorted = this.sortData(data)
-      console.log(this.parseData(sorted))
+      let sorted = this.groupData(data)
       let parseData = this.parseData(sorted)
       this.setState({
         expense: [...parseData],
-        rexpense: [...data],
+        rexpense: [...parseData],
         rawData: [...data],
         pageLoad: false
       })
