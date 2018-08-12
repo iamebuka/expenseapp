@@ -1,6 +1,8 @@
 import React from 'react'
 import "./Loading.css"
 import applogo from '../res/splash.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -9,14 +11,15 @@ class Loading extends React.Component {
         width: null,
         pieData: []
     }
-    
+
     render() {
         return (
             <div>
-                <div style={{margin:"calc(90vh/2) auto", width:"300px",  textAlign:"center"}}>
-                    <img style={{width: "250px"}} src={applogo} alt="App Icon showing wallet"/>
+                <div style={{ margin: "calc(70vh/2) auto", minWidth: "100px", fontSize: "100px", textAlign: "center" }}>
+                    <FontAwesomeIcon icon={faCreditCard} />
+                   <span style={{fontWeight:"700", fontSize:"40px", display:"block"}}> Expense App</span>
                 </div>
-          </div>
+            </div>
         )
     }
 }

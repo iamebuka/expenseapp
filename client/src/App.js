@@ -13,7 +13,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faDownload, faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faPlus, faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -224,8 +224,8 @@ class App extends Component {
               </div>
               <div className="download">
                 <button className="button">
-                <FontAwesomeIcon icon={faCloudDownloadAlt} />
-              </button>
+                  <FontAwesomeIcon icon={faCloudDownloadAlt} />
+                </button>
               </div>
             </div>
             {this.state.expense.map((item, index) => {
@@ -263,9 +263,9 @@ class App extends Component {
             <Activity expense={this.state.rawData} />
           </section>
         </div>
-        <Button variant="fab" color="primary" aria-label="add" style={{ position: "fixed", right: "20px", bottom: "20px" }} onClick={() => this.setState({ createform: true })} className="fab">
-          <Icon>add</Icon>
-        </Button>
+        <button className="button fab" onClick={() => this.setState({ createform: true })}>
+          <FontAwesomeIcon icon={faPlus} />
+        </button>
         {this.state.createform && (
           <div className="overlay">
             <div className="new">

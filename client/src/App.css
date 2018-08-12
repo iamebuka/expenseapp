@@ -3,6 +3,10 @@
   position: relative;
   letter-spacing: 1.6px;
 }
+:root{
+  --primary-color:rgba(0,0,0,0.4);
+  --secondary-color: rgb(51, 183, 188);
+}
 body{
   background :rgb(32, 32, 32);
   color: #fff;
@@ -58,6 +62,9 @@ body{
 .search-download .download{
   width:50px;
   
+}
+.search-download .download button{
+background-color: var(--primary-color)
 }
 .searchText{
   background-color: rgba(0,0,0,0.4);
@@ -131,21 +138,21 @@ body{
  .fab{
    position: fixed;
    bottom: 20px;
-   right:20px
+   right:20px;
+   background-color:var(--secondary-color) ;
+  
  }
 
 
  .button{
   border:none;
   border-radius:50%;
-  background-color: rgba(0,0,0,0.4);
-  background-color: rgb(51, 183, 188);
-  color:#fff;
+  color: #fff;
   min-width:60px;
   min-height: 60px;
   font-size:1.1em;
   cursor: pointer;
-  box-shadow: 2px -1px 5px rgba(0,0,0,0.4), -1px 2px 5px rgba(0,0,0,0.4);
+  box-shadow: 1px -1px 4px rgba(0,0,0,0.4), -1px 1px 4px rgba(0,0,0,0.4);
   transition: all 1s cubic-bezier(.47,0,.74,.71) 1ms;
  }
  .button:hover{
