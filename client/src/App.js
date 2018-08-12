@@ -24,7 +24,6 @@ class App extends Component {
       note: '',
       category: "",
       expense: [],
-      rexpense: [],
       rawData: [],
       pageLoad: true,
       searchText: ""
@@ -189,7 +188,6 @@ class App extends Component {
       let parseData = this.parseData(sorted)
       this.setState({
         expense: [...parseData],
-        rexpense: [...parseData],
         rawData: [...data],
         pageLoad: false
       })
