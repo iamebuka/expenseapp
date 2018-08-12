@@ -12,6 +12,11 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import './App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee, faDownload, faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons'
+
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -41,9 +46,9 @@ class App extends Component {
   }
 
   handleSearch = (e) => {
-   let filter = this.state.rawData.filter((item) => new RegExp(e.target.value, "i").exec(item.note))
-   //let filter = this.filterSearch(this.state.rawData, e.target.value)
-   console.log("filtered", filter)
+    let filter = this.state.rawData.filter((item) => new RegExp(e.target.value, "i").exec(item.note))
+    //let filter = this.filterSearch(this.state.rawData, e.target.value)
+    console.log("filtered", filter)
     let sorted = this.groupData(filter)
     let parseData = this.parseData(sorted)
     this.setState({
@@ -60,7 +65,7 @@ class App extends Component {
 
     return rDetails;
   }
-  
+
   handleFormSubmit = (e) => {
     var amount = this.state.transaction;
     if (amount.toLocaleLowerCase().endsWith("eur")) {
@@ -154,6 +159,7 @@ class App extends Component {
       let itemDate = moment(item.date).month();
       let itemYear = moment(item.date).year()
       let nowDiff = moment().diff(item.date, "days", true)
+      console.log("day difference", nowDiff)
       let key = nowDiff < 1 ? "today" :
         nowDiff < 2 ? "yesterday" :
           (nowDiff < 7 && moment().month() === itemDate && moment().year() === itemYear) ? "earlier this week" :
@@ -212,10 +218,16 @@ class App extends Component {
 
           </section>
           <section >
-            <div className="search">
-              <input type="text" placeholder="search transactions" name="searchText" value={this.state.searchText} onChange={this.handleSearch} className="textboxes searchText" />
+            <div className="search-download">
+              <div className="search">
+                <input type="text" placeholder="search transactions" name="searchText" value={this.state.searchText} onChange={this.handleSearch} className="textboxes searchText" />
+              </div>
+              <div className="download">
+                <button className="button">
+                <FontAwesomeIcon icon={faCloudDownloadAlt} />
+              </button>
+              </div>
             </div>
-
             {this.state.expense.map((item, index) => {
               return (
                 <div>

@@ -6,7 +6,7 @@
 }
 .summary-balance, .summary-balance-weekly{
     width:50%;
-    margin-bottom: 70px;
+    margin-bottom: 30px;
     font-weight: 700;
 }
 .summary-balance label.heading, .summary-balance-weekly label.heading{

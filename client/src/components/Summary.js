@@ -35,7 +35,9 @@ class Summary extends React.Component {
     componentWillUnmount() {
         window.removeEventListener("resize", this.updateDimensions);
     }
-
+    componentWillReceiveProps(e) {
+     console.log("fired on prop received", e)
+    }
     generatePieData = () => {
         var pieData = [];
         var data = {}
@@ -82,20 +84,20 @@ class Summary extends React.Component {
             <div className="summary-card">
                 <div className="summary-balance">
                     <label className="heading">{month[moment().month()]}  Transactions </label>
-                    <span> €806.29{/* {this.state.totalMonthly} */ }</span>
+                    <span> €806.29{/* {this.state.totalMonthly} */}</span>
                 </div>
                 <div className="summary-balance-weekly">
                     <label className="heading">Weeks Transactions</label>
                     <span> €{this.state.totalWeekly} </span>
                 </div>
-               {/*  <div className="item">
+                {/*  <div className="item">
                     <PieChart width={300} height={250}>
                         <Tooltip active={true} />
                         <Pie data={this.state.pieData} dataKey="value" legendType="line" label={true} nameKey="label" cx="50%" cy="50%" fill="rgb(51, 183, 188)" />
 
                     </PieChart>
                 </div> */}
-               
+
 
             </div>
 
