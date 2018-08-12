@@ -41,9 +41,10 @@ class App extends Component {
   }
 
   handleSearch = (e) => {
-   // let filter = this.state.rawData.filter((item) => new RegExp(e.target.val, "i").exec(item.note))
-   let filter = this.filterSearch(this.state.rawData, e.target.value)
-    let sorted = this.sortData(filter)
+   let filter = this.state.rawData.filter((item) => new RegExp(e.target.val, "i").exec(item.note))
+   //let filter = this.filterSearch(this.state.rawData, e.target.value)
+   console.log("filtered", filter)
+    let sorted = this.groupData(filter)
     let parseData = this.parseData(sorted)
     this.setState({
       searchText: e.target.value,
