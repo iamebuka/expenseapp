@@ -53,9 +53,11 @@ class App extends Component {
   }
 
   filterSearch = (arr, searchText) => {
-    return rDetails = arr.filter(l => {
+    const rDetails = arr.filter(l => {
       return new RegExp(searchText, "i").exec(l.note)
     });
+
+    return rDetails;
   }
   
   handleFormSubmit = (e) => {
