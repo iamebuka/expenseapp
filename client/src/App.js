@@ -12,10 +12,11 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import './App.css';
+import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee, faPlus, faCloudDownloadAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCoffee, faPlus, faCloudDownloadAlt, faMoneyCheckAlt } from '@fortawesome/free-solid-svg-icons'
 
-
+library.add(faCoffee,faPlus, faCloudDownloadAlt, faMoneyCheckAlt )
 
 class App extends Component {
   constructor(props) {
@@ -243,7 +244,7 @@ class App extends Component {
                           </div>
                           <div key={index + "item1"} className="item">
                             <div> {item.note}</div>
-                            <div className="date">  {moment(item.date).format("YYYY.MM.DD")}</div>
+                            <div className="date">  {moment(item.date).format("Mo MMMM YYYY")}</div>
                           </div >
                           <div key={index + "item2"} className="item">
                             <div>€{item.transvalue} </div>
