@@ -29,7 +29,8 @@ body{
   height: 100%;
   top:0px;
   left:0px;
-  position: fixed
+  position: fixed;
+  z-index:50000000
 }
 
 .new{
